@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\colorbox_field_formatter\Plugin\Field\FieldFormatter;
+namespace Drupal\colorbox_field_formatter\Plugin\Field\FieldFormatter; // Неймспейс для даного форматера
 
 use Drupal\colorbox\ColorboxAttachment;
 use Drupal\Component\Utility\Html;
@@ -29,7 +29,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   }
  * )
  */
-class ColorboxFieldFormatter extends FormatterBase implements ContainerFactoryPluginInterface {
+class ColorboxFieldFormatter extends FormatterBase implements ContainerFactoryPluginInterface { // Оголошення класу ColorboxFieldFormatter. Наслідується від FormatterBase та реалізовує інтерфейс
 
   /**
    * @var \Drupal\Core\Extension\ModuleHandlerInterface
@@ -106,16 +106,16 @@ class ColorboxFieldFormatter extends FormatterBase implements ContainerFactoryPl
   /**
    * {@inheritdoc}
    */
-  public function settingsForm(array $form, FormStateInterface $form_state) {
-    $form = parent::settingsForm($form, $form_state);
+  public function settingsForm(array $form, FormStateInterface $form_state) { // Форма налаштування поля. Відображається в адміністративній панелі
+    $form = parent::settingsForm($form, $form_state); // Оголошення масиву форми. Успадкування від FormatterBase
 
-    $form['style'] = [
-      '#title' => $this->t('Style of colorbox'),
-      '#type' => 'select',
-      '#default_value' => $this->getSetting('style'),
-      '#options' => $this->getStyles(),
-      '#attributes' => [
-        'class' => ['colorbox-field-formatter-style'],
+    $form['style'] = [ // Випадаючий список з вибором стилю модального вікна
+      '#title' => $this->t('Style of colorbox'), // Назва поля
+      '#type' => 'select', // Тип - випадаючий список
+      '#default_value' => $this->getSetting('style'), // Значення за замовчуванням 
+      '#options' => $this->getStyles(), // Підтягуємо список з опціями
+      '#attributes' => [ // Атрибути HTML-елемента
+        'class' => ['colorbox-field-formatter-style'], // CSS-клас для випадаючого списку
       ],
     ];
 
@@ -124,10 +124,10 @@ class ColorboxFieldFormatter extends FormatterBase implements ContainerFactoryPl
       '#type' => 'select',
       '#default_value' => $this->getSetting('link_type'),
       '#options' => $this->getLinkTypes(),
-      '#attributes' => [
-        'class' => ['colorbox-field-formatter-link-type'],
+      '#attributes' => [ // Атрибути HTML-елемента
+        'class' => ['colorbox-field-formatter-link-type'], // CSS-клас для випадаючого списку
       ],
-      '#states' => [
+      '#states' => [ // Стани
         'visible' => [
           'select.colorbox-field-formatter-style' => ['value' => 'default'],
         ],
